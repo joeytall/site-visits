@@ -16,7 +16,7 @@ class API(object):
     sql, count = self._query(start, os, device)
 
     return {
-      'sql': sql,
+      # 'sql': sql,
       'count': count,
     }
 
@@ -26,7 +26,7 @@ class API(object):
     sql, count = self._query(start, os, device, end)
 
     return {
-      'sql': sql,
+      # 'sql': sql,
       'count': count,
     }
 
