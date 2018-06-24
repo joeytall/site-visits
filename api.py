@@ -1,22 +1,12 @@
-import sqlite3
-from loader import DB
+from sql import SQL
 
 
-class API(object):
-  def __init__(self):
-    self._init_db()
-    return
-
-  def _init_db(self):
-    self.con = sqlite3.connect(DB)
-    self.cur = self.con.cursor()
-
+class API(SQL):
   def unique(self, os, device):
     start = 'SELECT count(*) FROM visit '
     sql, count = self._query(start, os, device)
 
     return {
-      # 'sql': sql,
       'count': count,
     }
 
@@ -26,7 +16,6 @@ class API(object):
     sql, count = self._query(start, os, device, end)
 
     return {
-      # 'sql': sql,
       'count': count,
     }
 
@@ -64,7 +53,3 @@ class API(object):
       for i in items.split(','):
         bits |= 2 ** int(i)
     return str(bits)
-
-  def _cleanup(self):
-    self.con.commit()
-    self.con.close()
